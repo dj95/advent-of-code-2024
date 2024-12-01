@@ -1,0 +1,17 @@
+[package]
+name = "{{project-name}}"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+fancy-regex = "0.14.0"
+regex = "1.11.1"
+
+[dev-dependencies]
+criterion = "0.5.1"
+
+[[bench]]
+name = "benches"
+harness = false
