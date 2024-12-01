@@ -27,11 +27,6 @@ fn parse_lists(inp: &str) -> IResult<&str, (Vec<i32>, Vec<i32>)> {
         right_list.push(tuple.2);
 
         tracing::debug!("{tuple:?}");
-
-        if line_inp.is_empty() {
-            break;
-        }
-
         let (line_inp, _) = opt(newline)(line_inp)?;
         inp = line_inp;
     }
@@ -53,7 +48,7 @@ pub fn part_one(inp: &str) -> i32 {
 
     left.iter()
         .zip(right.iter())
-        .map(|(&l, &r)| (l - r).abs())
+        .map(|(l, r)| (l - r).abs())
         .sum()
 }
 
@@ -63,10 +58,8 @@ pub fn part_two(inp: &str) -> i32 {
         Err(e) => panic!("{e}"),
     };
 
-    let mut left = res.0;
-    let right = res.1;
-
-    let max = right
+    let max = res
+        .1
         .into_iter()
         .fold(HashMap::<i32, usize>::new(), |mut m, x| {
             *m.entry(x).or_default() += 1;
@@ -75,9 +68,8 @@ pub fn part_two(inp: &str) -> i32 {
 
     tracing::debug!("{max:?}");
 
-    left.sort();
-
-    left.iter()
+    res.0
+        .iter()
         .map(|&e| *max.get(&e).unwrap_or(&0) as i32 * e)
         .sum()
 }
@@ -93,7 +85,7 @@ mod test {
             2   5\n\
             1   3\n\
             3   9\n\
-            3   3"
+            3   3\n"
             .to_owned();
 
         let res = part_one(&input);
@@ -108,7 +100,7 @@ mod test {
             2   5\n\
             1   3\n\
             3   9\n\
-            3   3"
+            3   3\n"
             .to_owned();
 
         let res = part_two(&input);
