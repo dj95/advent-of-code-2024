@@ -6,8 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-fancy-regex = "0.14.0"
-regex = "1.11.1"
+nom = { workspace = true }
+fancy-regex = { workspace = true }
+regex = { workspace = true }
+rstest = { workspace = true }
+test-log = { workspace = true }
+tracing = { workspace = true }
 
 [dev-dependencies]
 criterion = "0.5.1"

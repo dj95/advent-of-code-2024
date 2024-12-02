@@ -1,20 +1,13 @@
-pub fn read_lines() -> Vec<String> {
-    let mut res = Vec::new();
-
-    let content = include_str!("../input.txt");
-    for line in content.lines() {
-        res.push(line.to_string());
-    }
-
-    res
+pub fn read_lines() -> String {
+    include_str!("../input.txt").to_owned()
 }
 
 
-pub fn part_one(inp: Vec<String>) -> String {
+pub fn part_one(inp: &str>) -> String {
     "".to_string()
 }
 
-pub fn part_two(inp: Vec<String>) -> String {
+pub fn part_two(inp: &str) -> String {
     "".to_string()
 }
 
@@ -24,22 +17,18 @@ mod test {
 
     #[test]
     pub fn test_part_one() {
-        let input = vec![
-            "".to_string(),
-        ];
+        let input = "";
 
-        let res = part_one(input);
+        let res = part_one(&input);
 
         assert_eq!(res, "");
     }
 
     #[test]
     pub fn test_part_two() {
-        let input = vec![
-            "".to_string(),
-        ];
+        let input = "";
 
-        let res = part_two(input);
+        let res = part_two(&input);
 
         assert_eq!(res, "");
     }
