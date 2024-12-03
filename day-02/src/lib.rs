@@ -31,7 +31,7 @@ pub fn is_safe(row: &Vec<i32>) -> bool {
         .zip(row.iter().skip(1))
         .filter(|(&x, &y)| {
             if invalid_dir {
-                true;
+                return true;
             }
 
             let res = y - x;
