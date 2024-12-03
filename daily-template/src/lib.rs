@@ -3,7 +3,7 @@ pub fn read_lines() -> String {
 }
 
 
-pub fn part_one(inp: &str>) -> String {
+pub fn part_one(inp: &str) -> String {
     "".to_string()
 }
 
