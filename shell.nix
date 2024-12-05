@@ -20,6 +20,7 @@ pkgs.mkShell {
     cargo-edit
     cargo-watch
     cargo-nextest
+    rustfmt
     clippy
     libiconv
     rustc
