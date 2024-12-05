@@ -4,8 +4,8 @@ let
   pinnedPkgs = fetchFromGitHub {
     owner = "NixOS";
     repo = "nixpkgs";
-    rev = "2c27ab2e60502d1ebb7cf38909de38663f762a79";
-    sha256 = "sha256-n/DOfpKH1vkukuBnach91QBQId2dr5tkE7/7UrkV2zw=";
+    rev = "566e53c2ad750c84f6d31f9ccb9d00f823165550";
+    sha256 = "sha256-FLYY5M0rpa5C2QAE3CKLYAM6TwbKicdRK6qNrSHlNrE=";
   };
 
   pkgs = import pinnedPkgs {};
