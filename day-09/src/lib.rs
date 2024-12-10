@@ -6,7 +6,7 @@ fn expand(inp: &str) -> Vec<i64> {
     let mut character = -1;
 
     inp.chars()
-        .map(|c: char| {
+        .flat_map(|c: char| {
             tracing::debug!("{c:?}");
             if c == '\n' {
                 return vec![];
@@ -23,11 +23,10 @@ fn expand(inp: &str) -> Vec<i64> {
 
             vec![char; count as usize]
         })
-        .flatten()
         .collect()
 }
 
-fn defrag(disk: &mut Vec<i64>) {
+fn defrag(disk: &mut [i64]) {
     let mut cursor_left = disk.iter().position(|&x| x == -1).unwrap();
     let mut cursor_right = disk.len() - 1;
 
@@ -102,12 +101,11 @@ fn defrag_complete_files(inp: &str) -> Vec<i64> {
 
     data_map
         .iter()
-        .map(|(count, char)| vec![*char; *count as usize])
-        .flatten()
+        .flat_map(|(count, char)| vec![*char; *count as usize])
         .collect()
 }
 
-fn checksum(disk: &mut Vec<i64>) -> i64 {
+fn checksum(disk: &mut [i64]) -> i64 {
     disk.iter()
         .zip(0..disk.len())
         .filter(|el| *el.0 > 0)
@@ -137,7 +135,7 @@ mod test {
     #[rstest]
     #[case(&mut vec![0,0,9,9,8,1,1,1,8,8,8,2,7,7,7,3,3,3,6,4,4,6,5,5,5,5,6,6,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1], 1928)]
     #[test_log::test]
-    pub fn test_checksum(#[case] disk: &mut Vec<i64>, #[case] expected_result: i64) {
+    pub fn test_checksum(#[case] disk: &mut [i64], #[case] expected_result: i64) {
         let result = checksum(disk);
 
         assert_eq!(result, expected_result);
@@ -178,7 +176,7 @@ mod test {
     pub fn test_part_one() {
         let input = "2333133121414131402";
 
-        let res = part_one(&input);
+        let res = part_one(input);
 
         assert_eq!(res, 1928);
     }
@@ -187,7 +185,7 @@ mod test {
     pub fn test_part_two() {
         let input = "2333133121414131402";
 
-        let res = part_two(&input);
+        let res = part_two(input);
 
         assert_eq!(res, 2858);
     }

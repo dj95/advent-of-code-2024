@@ -63,7 +63,7 @@ fn parse_rules(rules_string: &str) -> Vec<(u32, u32)> {
         .collect()
 }
 
-pub fn part_two(inp: &str) -> String {
+pub fn part_two(_inp: &str) -> String {
     "".to_string()
 }
 
